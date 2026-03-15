@@ -1,0 +1,180 @@
+<!-- Criado por Marise Miranda | 2017.1 -->
+<!-- Adaptado por Matheus Matos | 2025.1 -->
+<!-- Reformulado por Jonatas Teles | 2026.1 -->
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Matheus Machine</title>
+</head>
+
+<body>
+    <div id="tela_principal" class="tela visivel">
+        <h1>Jonatas's Machine</h1>
+        <h2>Converter ou Calcular</h2>
+        <div class="btnPrincipal">
+            <button onclick="mudarTela('tela_principal', 'tela_converter')">Converter</button>
+            <button onclick="mudarTela('tela_principal', 'tela_calculadora')">Calcular</button>
+        </div>
+    </div>
+
+    <!-- Converter -->
+
+    <div id="tela_converter" class="tela escondida">
+        <h2>Escolha qual base numerica quer digitar</h2><br>
+        <div class="btnPrincipal">
+            <button onclick="aparecerProx('tela_decimal')">Decimal</button>
+            <button onclick="aparecerProx('tela_binario')">Binário</button>
+            <button onclick="aparecerProx('tela_octal')">Octal</button>
+            <button onclick="aparecerProx('tela_hexadecimal')">Hexadecimal</button>
+            <button onclick="mudarTela('tela_converter', 'tela_principal')">Voltar</button>
+        </div>
+        <div id="tela"></div>
+    </div>
+
+    <div id="tela_decimal" class="secaoExpand secaoE tela">
+        <h3>Digite um número em decimal:</h3>
+        <input id="ipt_decimal" type="text" placeholder="Ex: 24">
+        <br><br>
+
+        <button onclick="converterDecimal()">Converter</button>
+
+        <h3>Resultados:</h3>
+        <p>Binário:
+        <div id="respD1"></div>
+        </p>
+        <p>Octal:
+        <div id="respD2"></div>
+        </p>
+        <p>Hexadecimal:
+        <div id="respD3"></div>
+        </p>
+    </div>
+
+    <div id="tela_binario" class="secaoExpand secaoE tela">
+        <h3>Digite um número em binario:</h3>
+        <input id="ipt_binario" type="text" placeholder="Ex: 1010">
+        <br><br>
+
+        <button onclick="converterBinario()">Converter</button>
+
+        <h3>Resultados:</h3>
+        <p>Decimal:
+        <div id="respB1"></div>
+        </p>
+        <p>Octal:
+        <div id="respB2"></div>
+        </p>
+        <p>Hexadecimal:
+        <div id="respB3"></div>
+        </p>
+    </div>
+
+    <div id="tela_octal" class="secaoExpand secaoE tela">
+        <h3>Digite um número em octal:</h3>
+        <input id="ipt_octal" type="text" placeholder="Ex: 17">
+        <br><br>
+
+        <button onclick="converterOctal()">Converter</button>
+
+        <h3>Resultados:</h3>
+        <p>Decimal:
+        <div id="respO1"></div>
+        </p>
+        <p>Binário:
+        <div id="respO2"></div>
+        </p>
+        <p>Hexadecimal:
+        <div id="respO3"></div>
+        </p>
+    </div>
+
+    <div id="tela_hexadecimal" class="secaoExpand secaoE tela">
+        <h3>Digite um número em hexadecimal:</h3>
+        <input id="ipt_hexadecimal" type="text" placeholder="Ex: F6">
+        <br><br>
+
+        <button onclick="converterHexadecimal()">Converter</button>
+
+        <h3>Resultados:</h3>
+        <p>Decimal:
+        <div id="respH1"></div>
+        </p>
+        <p>Binário:
+        <div id="respH2"></div>
+        </p>
+        <p>Octal:
+        <div id="respH3"></div>
+        </p>
+    </div>
+
+    <!-- Calculadora -->
+
+    <div id="tela_calculadora" class="tela escondida">
+        <h2>Escolha as bases numéricas que representam cada valor da operação</h2>
+        <div class="div_mainCombobox">
+            <div class="combobox1">
+                <select name="baseNum1" id="combo_baseNum1">
+                    <option value="decimal">Decimal</option>
+                    <option value="binario">Binário</option>
+                    <option value="octal">Octal</option>
+                    <option value="hexadecimal">Hexadecimal</option>
+                </select>
+            </div>
+            <div class="combobox2">
+                <select name="baseNum2" id="combo_baseNum2">
+                    <option value="decimal">Decimal</option>
+                    <option value="binario">Binário</option>
+                    <option value="octal">Octal</option>
+                    <option value="hexadecimal">Hexadecimal</option>
+                </select>
+            </div>
+        </div>
+        <div class="div_mainCombobox">
+            <div class="iptValue1">
+                <input type="text" id="ipt_numInserido1" placeholder="Digite um valor">
+            </div>
+            <div>
+                <select name="operacao" id="combo_operacao">
+                    <option value="soma">Soma</option>
+                    <option value="sub">Subtração</option>
+                    <option value="mult">Multiplicação</option>
+                    <option value="divisao">Divisão</option>
+                    <option value="expoente">Exponenciação</option>
+                    <option value="resto">Módulo/Resto</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" id="ipt_numInserido2" placeholder="Digite outro valor">
+            </div>
+        </div>
+        <div class="div_mainCombobox">
+            <div class="btnPrincipal">
+                <button onclick="calcularOperacao()">Calcular Operação</button>
+            </div>
+            <div class="btnPrincipal">
+                <button onclick="mudarTela('tela_calculadora', 'tela_principal')">Voltar</button>
+            </div><br><br>
+        </div>
+        <div class="labelResultado">
+            <span>Resposta em decimal é:<br>
+                <div id="resultadoOperacao" class="labelResultado"></div>
+            </span>
+        </div>
+    </div>
+    <div class="div_mainCombobox">
+        <button id="btnHistorico" onclick="alternarHistorico()" class="btnPrincipal">Mostrar Histórico</button>
+    </div>
+    <div id="painelHistorico" class="historico historicoE">
+        <h3>🕒 Histórico 🕒</h3>
+        <div id="listaHistorico"></div>
+        <button onclick="limparHistorico()">Limpar Histórico</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
